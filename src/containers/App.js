@@ -32,7 +32,7 @@ function App() {
             <InputMedia label='Live Images Import File' name='live-images-file' />
          </section>
          <section class="step step-2">
-            <h2>Clean-up settings:</h2>
+            <h2>Set clean-up settings:</h2>
             <section>
                <h3>Pages to exclude:</h3>            
                <div class="list-pages grid-autofill">
@@ -45,6 +45,15 @@ function App() {
                   <InputList list={slugUpdates} />
                </div>
             </section>
+            <button>START</button>            
+         </section>
+         <section class="step step-3">
+            <textarea readOnly class="console-window">console</textarea>
+         </section>
+         <section class="step step-4">
+            <h2>Download assets:</h2>
+            <button>Import File (pages.xml)</button>
+            <button>Images (no. of images)</button>
          </section>         
       </article>
    );
