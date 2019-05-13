@@ -32,6 +32,14 @@
   }
 }
 
+/*** Buttons */
+button {
+  cursor: pointer;
+  font-weight: bold;
+  padding: .5em 1em;
+  margin: 1em;
+}
+
 .step {
   margin: 2em;
   text-align: left;
@@ -59,3 +67,20 @@
   flex-wrap: wrap;
 }
 .list-slugs > div { margin-right: 20px; }
+
+/*** STEP 3 */
+.console-window {
+  background: #000;
+    background: rgba(0,0,0,.02);
+  border: none;
+  color: green;
+  min-height: 20vh;
+  outline: none;
+  padding: .5em;
+  resize: none;
+  width: 95%;
+}
+
+/*** STEP 4 */
+.step-4 h2 { text-align: left; }
+.step-4 { text-align: center; }
