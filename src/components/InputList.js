@@ -1,13 +1,14 @@
 import React from 'react';
 
-const createListItem = ({name, value}) => (
-
-	<div><input type='checkbox' checked={value} /> {name}</div>
-);
-
 const InputList = (props) => (
 
-	props.list.map(createListItem)
+	props.list.map((value) => {
+
+      if ( props.excluded.includes(value) )
+         return <span><input type="checkbox" /> {value}</span>;
+      else
+         return <span><input type="checkbox" checked /> {value}</span>;
+   })
 );
 
 export default InputList;

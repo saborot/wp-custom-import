@@ -1,39 +1,45 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import logo from '../logo.svg';
 import './App.css';
 import InputText from '../components/InputText';
 import InputMedia from '../components/InputMedia';
 import InputList from '../components/InputList';
+import { setStagUrl } from '../actions';
 
-const excludedPages = [
-   {name:'page1',value:true},
-   {name:'page2',value:true},
-   {name:'page3',value:true},
-]
+const mapStateToProps = (state)  => {
 
-const slugUpdates = [
-   {name:'schedule-service -> service-appointment',value:true},
-   {name:'value-trade -> trade-in',value:true},
-   {name:'apply-for-financing -> finance-application',value:true},
+   return {
+
+      stagUrl: state.stagUrl,
+      livePagesFile : state.livePagesFile,
+      liveMediaFile : state.liveMediaFile,
+      excludedPages: state.excludedPages,
+      slugsToUpdate: state.slugsToUpdate
+   }
+}
+
+const mapDispatchToProps = (dispatch) => {
+
+   return {
+      onSetStagUrl: (event) => dispatch(setStagUrl(event.target.value))
+      }
+}
+
+const excludedPageList = ['page1','page2','page3']
+
+const slugUpdateList = [
+   'schedule-service -> service-appointment',
+   'value-trade -> trade-in',
+   'apply-for-financing -> finance-application'
 ]
 
 class App extends Component {
-
-   constructor() {
-      super();
-      this.state = {
-         stagUrl : '',
-         livePages : '',
-         liveMedia : ''
-      }
-   }
-
-   componentDidMount() {
-
-      console.log(this.props.store.getState());
-   }
    
    render() {
+
+      const { stagUrl } = this.props;
+
       return (
          <article className="App">
             <header className="App-header">
@@ -42,7 +48,7 @@ class App extends Component {
             </header>
             <section className="step step-1">
                <h2>Fill-in required information:</h2>
-               <InputText label='Staging URL' name='url-stag' />
+               <InputText label='Staging URL' name='url-stag' value={stagUrl} />
                <InputMedia label='Live Pages Import File' name='live-pages-file' />
                <InputMedia label='Live Images Import File' name='live-images-file' />
             </section>
@@ -51,13 +57,13 @@ class App extends Component {
                <section>
                   <h3>Pages to exclude:</h3>            
                   <div className="list-pages grid-autofill">
-                     <InputList list={excludedPages} />
+                     <InputList list={excludedPageList} excluded={this.props.excludedPages} />
                   </div>
                </section>
                <section>
                   <h3>Slugs to udpate:</h3>
                   <div className="list-slugs grid-autofill">
-                     <InputList list={slugUpdates} />
+                     <InputList list={slugUpdateList} excluded={this.props.slugsToUpdate} />
                   </div>
                </section>
                <button>START</button>            
@@ -75,4 +81,4 @@ class App extends Component {
    }
 }
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
