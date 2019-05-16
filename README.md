@@ -6,8 +6,20 @@ React App Steps:
 2. Create Components
 3. Create Actions
 4. Install 'Redux'
-5. Install 'React-Redus'
+5. Install 'React-Redux'
 6. Build Actions
 7. Build Reducers
-8. Connect the Actions and Reducers to your app using 'Provider' and 'connect' from react-redux
-9. Create Store
+8. Create Store
+   -> (index.js)
+   -> Import createStore from 'redux'
+   -> const store = createStore(reducer);
+9. Connect the Reducers to your app using 'Provider' from react-redux
+   -> (index.js)
+   -> Import Provider from 'react-redux'
+   -> <Provider store={store}><App /></Provider>
+10. Connect the Actions to your app using 'connect'
+   -> (app.js)
+   -> Import 'connect' from 'react-redux'
+   -> export default connect(mapStateToProps, mapDispatchToProps)(App)
+   -> mapStateToProps - takes in a state and returns an updated object as props
+   -> mapDispatchToProps - takes in a dispatch and returns an object of actions mapped through dispatch

@@ -1,7 +1,11 @@
 import { CHANGE_STAG_URL } from './constants';
 
 const initialState = {
-   stagUrl: ''
+   stagUrl: '',
+   livePagesFile : '',
+   liveMediaFile : '',
+   excludedPages: [],
+   slugsToUpdate: []
 }
 
 export const setAssets = (state=initialState, action={}) =>  {
